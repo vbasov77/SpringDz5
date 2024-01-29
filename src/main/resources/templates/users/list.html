@@ -1,0 +1,64 @@
+<div th:replace="~{layouts/header :: header(Login)}"/>
+
+<style th:inline="css">
+    .card{
+        float: left;
+    }
+
+    .rem {
+        opacity: 0.6;
+    }
+
+    .rem:hover {
+        opacity: 1;
+    }
+</style>
+
+<section style="margin-top: 60px">
+    <div class="container-fluid px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 lit">
+            <div class="col-lg-12 justify-content-center">
+                <div th:each="user : ${users}">
+                    <div class="card" th:data-card="${user.getId()}"
+                         style="width: 18rem; margin: 5px;">
+                        <div class="card-body">
+                            <img th:src="@{'images/no_image/anonymous.png'}" style="opacity: 0.6;" class="card-img-top">
+                            <div>
+                                id: <span th:text="${user.getId}"></span><br>
+                                <b><span th:text="${user.getName}"></span></b><br>
+                                возраст: <span th:text="${user.getAge}"></span>
+                            </div>
+                        </div>
+                        <div class="card-footer" style="height: 60px">
+                            <div th:data-id="${user.getId()}" class="d-inline-block" style="cursor: pointer;">
+                                <a title="Редактировать" class="rem"
+                                   th:href="@{edit_user/{id}(id = ${user.getId()})}">
+                                    <img th:src="@{'/icons/edit.svg'}"
+                                         style="width: 15px; ">
+                                </a>
+
+                                <a title="Смотреть объект" class="rem"
+                                   th:href="@{/user/id{id}(id = ${user.getId()})}">
+                                    <img th:src="@{'/icons/eye.svg'}"
+                                         style="width: 17px; ">
+                                </a>
+                                <a th:data-id="${user.getId()}" title="Удалить объект" class="rem"
+                                   id="deleteUser">
+                                    <img th:src="@{'/icons/delete.svg'}"
+                                         style="width: 20px; ">
+                                </a>
+
+
+                            </div>
+                            <center>
+                                <div th:data-preload="${user.getId()}"></div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<script type="text/javascript" th:src="@{/js/users/delete.js}"></script>
+<div th:replace="~{layouts/footer :: footer(Login)}"/>

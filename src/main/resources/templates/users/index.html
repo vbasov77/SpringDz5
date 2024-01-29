@@ -1,0 +1,14 @@
+<div th:replace="~{layouts/header :: header(Login)}"/>
+<link th:href="@{/css/login.css}" rel="stylesheet">
+<section style="margin-top: 60px">
+    <div class="container-fluid px-4 px-lg-5" style="white-space: nowrap; height: 60vh">
+        <div class="row">
+            <div class="col-lg-12 text-center justify-content-center">
+                 <h3>ID: <span th:text="${user.getId}"/></h3>
+                <h1><span th:text="${user.getName}"/></h1>
+                <h5>Возраст:  <span th:text="${user.getAge}"/></h5>
+            </div>
+        </div>
+    </div>
+</section>
+<div th:replace="~{layouts/footer :: footer(Login)}"/>

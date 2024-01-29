@@ -1,0 +1,38 @@
+<div th:replace="~{layouts/header :: header(Login)}"/>
+<link th:href="@{/css/login.css}" rel="stylesheet">
+<section style="margin-top: 60px">
+    <div class="container-fluid px-4 px-lg-5" style="white-space: nowrap; height: 60vh">
+        <div class="row">
+            <div class="col-lg-12 text-center justify-content-center">
+                <div th:if="${message}">
+                    <span th:text="${message}"/>
+                </div>
+                <h1 style="margin: 40px 0 60px 0">Добавить юзера</h1>
+                <div class="err" th:if="${error}">
+                    <span th:text="${error}"/>
+                </div>
+                <form th:action="@{/create_user}" method="post">
+                    <br>
+                    <div>
+                        <label th:for="name"><b>Имя:</b></label>
+                        <input name="name" type="text"
+                               class="form-control"
+                               placeholder="Имя" autocomplete="off" required>
+                    </div>
+                    <div>
+                        <label th:for="age"><b>Возраст:</b></label>
+                        <input name="age" type="number"
+                               class="form-control"
+                               placeholder="Age" autocomplete="off" required>
+                    </div>
+                    <br>
+                    <button class="btn btn-outline-success" type="submit" >
+                        Добавить
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+<div th:replace="~{layouts/footer :: footer(Login)}"/>
